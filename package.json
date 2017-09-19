@@ -1,0 +1,23 @@
+{
+  "name": "kodi-harmony-dash",
+  "version": "1.0.0",
+  "description": "Use an amazon dash button to control a Harmony Bub and Kodi",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jefftherobot/kodi-harmony-dash.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jefftherobot/kodi-harmony-dash/issues"
+  },
+  "homepage": "https://github.com/jefftherobot/kodi-harmony-dash#readme",
+  "dependencies": {
+    "dash-button": "^3.1.0"
+  },
+  "scripts": {
+    "test": "",
+    "scan": "dash-button scan"
+  }
+}
