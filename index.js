@@ -12,43 +12,35 @@ let subscription = button.addListener(async () => {
   tvOnOff();
 });
 
-playTvShow();
-
 function playTvShow(){
 	kodi(KODI_IP_ADDRESS, 9090).then(function (connection) {
 		return connection.VideoLibrary.GetEpisodes({ 
-			'tvshowid': 48, 
+			'tvshowid': 48, //teen titans go! 
 			'limits': { 
 				'start' : 0, 
-				'end': 30 }, 
+				'end': 10 }, 
 			'sort': { 
 				'order': 'ascending', 
 				'method': 'random'} 
 			})
 		.then(function(data) {
 
-			console.log(data.episodes)
-			var counter = 0;
+			//console.log(data.episodes)
 
-			connection.Playlist.Clear({playlistid:1})
-
-			/*data.episodes.forEach(function(ep, i) {
-				return connection.Playlist.Add({playlistid:1, item:{episodeid:ep.episodeid}})
-					.then(function(item){ 
-					console.log(item)
-					counter++;
-					
-					if(counter==30){ console.log('end')
-						connection.Player.Open({item: { playlistid: 1 }});
-						// connection.Playlist.GetItems({playlistid:1}).then(function(items){
-						// 	console.log(items)
-						// })
-					}
-
+			return connection.Playlist.Clear({playlistid:1}).then(function(){
+				return Promise.all(data.episodes.map(function(episode) { console.log(episode)
+					return connection.Playlist.Add({playlistid:1, item:{episodeid:episode.episodeid}})
+					}))
+				.then(function(e){ 
+						return connection.Player.Open({item: { playlistid: 1 }})
+					/*return connection.Playlist.GetItems({playlistid:1}).then(function(items){
+						console.log(items)
+					})*/
 				})
-			})*/
 
+			})
 		})
+
 	}).catch(function(e) {
 	/* Handle errors */
 	if(e.stack) {
@@ -58,7 +50,7 @@ function playTvShow(){
 	}
 }).then(function() {
 	/* Finally exit this process */
-	process.exit();
+	//process.exit();
 });
 }
 
@@ -78,6 +70,12 @@ function tvOnOff(){
 	                  var id = activity.id
 	                  harmonyClient.startActivity(id)
 	                  harmonyClient.end()
+	                  
+	                  setTimeout(function(){
+	                  	playTvShow();
+	                  },10000)
+
+
 	                  return true
 	                }
 	                return false
