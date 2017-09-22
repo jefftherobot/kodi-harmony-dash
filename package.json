@@ -15,8 +15,11 @@
   "homepage": "https://github.com/jefftherobot/kodi-harmony-dash#readme",
   "dependencies": {
     "dash-button": "^3.1.0",
+    "exec-retry": "^2.1.0",
     "harmonyhubjs-client": "^1.1.10",
-    "kodi-ws": "^2.4.3"
+    "ip-monitor-cli": "^1.0.0",
+    "kodi-ws": "^2.4.3",
+    "ping": "^0.2.2"
   },
   "scripts": {
     "test": "",
