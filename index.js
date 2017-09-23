@@ -5,14 +5,14 @@ const exec = require('child_process').exec;
 const filter = require("lodash.filter");
 
 
-const DASH_BUTTON_MAC_ADDRESS = '40:b4:cd:ba:25:f3';
+const DASH_BUTTON_MAC_ADDRESS_GREEN = '40:b4:cd:ba:25:f3';
 //const HARMONY_IP_ADDRESS = '192.168.0.242';
 const HARMONY_IP_ADDRESS = '192.168.0.118';
 const KODI_IP_ADDRESS = '192.168.0.205';
 //const KODI_IP_ADDRESS = '192.168.0.128';
 
 
-let button = new DashButton(DASH_BUTTON_MAC_ADDRESS);
+let button = new DashButton(DASH_BUTTON_MAC_ADDRESS_GREEN);
 
 let subscription = button.addListener(async () => {
 	playTvShow('Teen Titans Go!');
@@ -37,7 +37,7 @@ function buildPlaylist(tvshowTitle){
 
 				return tvshow[0].tvshowid;
 
-			}).then(function(id){ console.log(id)
+			}).then(function(id){
 				return connection.VideoLibrary.GetEpisodes({ 
 					'tvshowid': 48, //teen titans go! 
 					'limits': { 
