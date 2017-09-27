@@ -21,7 +21,7 @@ button_green.addListener(async () => {
 });
 
 button_red.addListener(async () => {
-	playTvShow('Teen Titans Go!');
+	playTvShow('Blaze and the Monster Machines');
 });
 
 function playTvShow(tvshowTitle){
@@ -45,7 +45,7 @@ function buildPlaylist(tvshowTitle){
 
 			}).then(function(id){
 				return connection.VideoLibrary.GetEpisodes({ 
-					'tvshowid': 48, //teen titans go! 
+					'tvshowid': id, //teen titans go! 
 					'limits': { 
 						'start' : 0, 
 						'end': 10 }, 
@@ -53,6 +53,7 @@ function buildPlaylist(tvshowTitle){
 						'order': 'ascending', 
 						'method': 'random'} 
 					})
+				})
 				.then(function(data) {
 
 					console.log(data.episodes)
