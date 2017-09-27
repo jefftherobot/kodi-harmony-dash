@@ -28,17 +28,17 @@ start()
   PWD=/root
   HOME=/root
   NODE_ENV=production
-  ${forever} start -a -l /var/log/forever.log -o /dev/null -e ${workdir}/logs/node_err.log --sourceDir ${workdir} ${workdir}/node/${script}
+  ${forever} start -a -l /var/log/forever.log -o /dev/null -e ${workdir}/logs/node_err.log --sourceDir ${workdir} ${workdir}/${script}
 }
 
 stop()
 {
-  ${forever} stop ${workdir}/node/${script}
+  ${forever} stop ${workdir}/${script}
 }
 
 restart()
 {
-  ${forever} restart ${workdir}/node/${script}
+  ${forever} restart ${workdir}/${script}
 }
 
 run_rc_command "$1"
