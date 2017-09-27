@@ -7,11 +7,11 @@ const filter = require("lodash.filter");
 
 const DASH_BUTTON_MAC_ADDRESS_GREEN = '40:b4:cd:ba:25:f3';
 const DASH_BUTTON_MAC_ADDRESS_RED = '18:74:2e:dd:0d:ed';
-//const HARMONY_IP_ADDRESS = '192.168.0.242';
-const HARMONY_IP_ADDRESS = '192.168.0.118';
+const HARMONY_IP_ADDRESS = '192.168.0.242';
 const KODI_IP_ADDRESS = '192.168.0.205';
-//const KODI_IP_ADDRESS = '192.168.0.128';
 
+//const HARMONY_IP_ADDRESS = '192.168.0.118'; //Rec Room
+//const KODI_IP_ADDRESS = '192.168.0.128'; //Rec Room
 
 let button_green = new DashButton(DASH_BUTTON_MAC_ADDRESS_GREEN);
 let button_red= new DashButton(DASH_BUTTON_MAC_ADDRESS_RED);
