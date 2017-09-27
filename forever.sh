@@ -28,7 +28,7 @@ start()
   PWD=/root
   HOME=/root
   NODE_ENV=production
-  ${forever} start -a -l /var/log/forever.log -o /dev/null -e ${workdir}/logs/node_err.log --sourceDir ${workdir} ${workdir}/${script}
+  ${forever} start -a -l /var/log/forever.log -o /dev/null -e ${workdir}/logs/node_err.log --sourceDir ${workdir} ${script}
 }
 
 stop()
