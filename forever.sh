@@ -23,6 +23,9 @@ eval "${rcvar}=\${${rcvar}:-'NO'}"
 
 start()
 {
+  USER=root
+  PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/root/bin
+  PWD=/root
   HOME=/root
   NODE_ENV=production
   ${forever} start -a -l /var/log/forever.log -o /dev/null -e ${workdir}/logs/node_err.log --sourceDir ${workdir} ${workdir}/node/${script}
