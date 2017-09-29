@@ -112,9 +112,11 @@ function tvOnOff(){
 								})
 							})
 					} else {
-						console.log('Currently on. Turning TV off')
-						harmonyClient.turnOff()
 						harmonyClient.end()
+						return true
+						//console.log('Currently on. Turning TV off')
+						//harmonyClient.turnOff()
+						//harmonyClient.end()
 					}
 				})
 		})
