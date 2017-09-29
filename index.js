@@ -58,19 +58,22 @@ function buildPlaylist(tvshowTitle){
 
 					console.log(data.episodes)
 
-					return connection.Playlist.Clear({playlistid:1}).then(function(){
-						return Promise.all(data.episodes.map(function(episode) { console.log(episode)
-							return connection.Playlist.Add({playlistid:1, item:{episodeid:episode.episodeid}})
-							}))
-						.then(function(e){ 
-								return connection.Player.Open({item: { playlistid: 1 }})
-							/*return connection.Playlist.GetItems({playlistid:1}).then(function(items){
-								console.log(items)
-							})*/
+					return stopAllActivePlayers(connection).then(function() {
+
+						return connection.Playlist.Clear({playlistid:1}).then(function(){
+							return Promise.all(data.episodes.map(function(episode) { console.log(episode)
+								return connection.Playlist.Add({playlistid:1, item:{episodeid:episode.episodeid}})
+								}))
+							.then(function(e){ 
+									return connection.Player.Open({item: { playlistid: 1 }})
+								/*return connection.Playlist.GetItems({playlistid:1}).then(function(items){
+									console.log(items)
+								})*/
+							})
+
 						})
 
-					// })
-				})
+					})
 
 			})
 
@@ -120,6 +123,16 @@ function tvOnOff(){
 					}
 				})
 		})
+}
+
+/* Utility function to stop all active players of a kodi instance */
+function stopAllActivePlayers(connection) {
+	return connection.Player.GetActivePlayers().then(function(players) {
+		/* Stop everything thats playing */
+		return Promise.all(players.map(function(player) {
+			return connection.Player.Stop(player.playerid);
+		}));
+	});
 }
 
 
